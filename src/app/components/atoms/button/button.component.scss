@@ -2,8 +2,10 @@ button.mat-raised-button {
   width: 100%;
   margin-top: 16px;
   font-size: 16px;
+  background-color: var(--secondary-color);
+  color: #fff;
 }
 button.mat-raised-button:hover {
   color: #f0f0f0;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }

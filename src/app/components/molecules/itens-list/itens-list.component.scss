@@ -11,7 +11,7 @@ section {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 75vh;
+  max-height: 70vh;
 }
 
 .list-item {
@@ -21,12 +21,15 @@ section {
   &:hover {
     background-color: #f0f0f0;
     cursor: pointer;
+    transform: scale(1.01);
   }
   &.clicked {
     background-color: #e0e0ff;
+    transform: scale(1.01);
   }
   &:active {
     background-color: #e0e0ff;
+    transform: scale(1.01);
   }
 }
 

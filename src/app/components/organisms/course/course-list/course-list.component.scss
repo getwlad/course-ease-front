@@ -1,6 +1,14 @@
 .card{
   min-height: 100%;
+  mat-card-header{
+    display: flex;
+    flex-direction: column;
+  }
+  app-button{
+    width: 150px;
+  }
   mat-card-title{
     font-size: 32px;
+
   }
 }
