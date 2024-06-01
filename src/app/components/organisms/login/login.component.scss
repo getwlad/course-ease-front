@@ -1,0 +1,30 @@
+
+.login-card {
+  width: 500px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--background-color);
+}
+
+.links {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.links a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

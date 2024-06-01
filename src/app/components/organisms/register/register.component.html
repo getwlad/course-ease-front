@@ -1,0 +1,13 @@
+<section>
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>Cadastro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <app-auth-form
+        [loading]="loading"
+        (onSubmit)="register($event)"
+      ></app-auth-form>
+    </mat-card-content>
+  </mat-card>
+</section>

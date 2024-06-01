@@ -3,6 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, EMPTY, Subject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/models/user.model';
+import {
+  LoginResponse,
+  RegisteredUser,
+} from './interfaces/auth-response.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -29,15 +34,19 @@ export class AuthService {
     return EMPTY;
   }
 
-  login(username: string, password: string): Observable<any> {
+  login(user: User): Observable<LoginResponse> {
+    return this.http.post<any>(`${this.baseUrl}/auth/login`, user).pipe(
+      tap((response) => {
+        localStorage.setItem('token', response.token);
+        this.emitLoginStatus(true);
+      }),
+    );
+  }
+
+  register(user: User): Observable<RegisteredUser> {
     return this.http
-      .post<any>(`${this.baseUrl}/auth/login`, { username, password })
-      .pipe(
-        tap((response) => {
-          localStorage.setItem('token', response.token);
-          this.emitLoginStatus(true);
-        }),
-      );
+      .post<any>(`${this.baseUrl}/auth/register`, user)
+      .pipe(tap((response) => {}));
   }
 
   logout(): void {

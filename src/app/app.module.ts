@@ -30,8 +30,12 @@ import { ChartsComponent } from './components/organisms/charts/charts.component'
 import { DashListComponent } from './components/organisms/dash-list/dash-list.component';
 import { AuthService } from './services/authentication/auth.service';
 import { AuthInterceptor } from './services/authentication/auth.interceptor';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { InputComponent } from './components/atoms/input/input.component';
+import { AuthFormComponent } from './components/molecules/auth-form/auth-form.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { LoginComponent } from './components/organisms/login/login.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterComponent } from './components/organisms/register/register.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,10 @@ import { RegisterComponent } from './pages/register/register.component';
     DashListComponent,
     LoginComponent,
     RegisterComponent,
+    InputComponent,
+    AuthFormComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
   ],
   imports: [
     BrowserModule,

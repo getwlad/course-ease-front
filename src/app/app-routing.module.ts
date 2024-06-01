@@ -6,17 +6,18 @@ import { AlunosComponent } from './pages/alunos/alunos.component';
 import { ProfessoresComponent } from './pages/professores/professores.component';
 import { NaoEncontradaComponent } from './pages/nao-encontrada/nao-encontrada.component';
 import { AuthGuard } from './auth.guard';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent,
+    component: LoginPageComponent,
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    component: RegisterPageComponent,
   },
   {
     path: 'dashboard',

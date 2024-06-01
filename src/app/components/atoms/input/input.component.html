@@ -1,0 +1,12 @@
+<input
+  matInput
+  [formControl]="control"
+  [type]="type"
+  [placeholder]="placeholder"
+  class="mat-input-element"
+/>
+<ng-container *ngFor="let error of errors">
+  <mat-error *ngIf="control.hasError(error.type)">
+    {{ error.message }}
+  </mat-error>
+</ng-container>

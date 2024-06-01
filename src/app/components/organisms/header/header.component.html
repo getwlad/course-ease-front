@@ -16,5 +16,9 @@
       </ul>
     </nav>
   </aside>
+  <div class="login-options" *ngIf="!isLoggedIn">
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+    <a routerLink="/register" routerLinkActive="active">Registrar</a>
+  </div>
   <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
 </header>
