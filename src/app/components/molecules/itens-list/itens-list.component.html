@@ -1,0 +1,24 @@
+<section>
+  <input
+    matInput
+    class="ipt-search"
+    [(ngModel)]="searchTerm"
+    placeholder="{{ label }}"
+    (input)="filterItems()"
+  />
+
+  <mat-list class="list">
+    <mat-list-item
+      *ngFor="let item of filteredItems"
+      class="list-item"
+      (mouseover)="highlightItem(item)"
+      (mouseleave)="resetHighlight()"
+      (click)="selectItem(item)"
+    >
+      <mat-icon class="title-icon" mat-list-icon>{{
+        label == "Pesquisar Curso" ? "menu_book" : "person"
+      }}</mat-icon>
+      <app-item-details [item]="item" [label]="label"></app-item-details>
+    </mat-list-item>
+  </mat-list>
+</section>

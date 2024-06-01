@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { DashboardRelatory } from 'src/app/models/dashboard-relatory..model';
 
 @Component({
   selector: 'app-summary-card',
@@ -6,12 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./summary-card.component.scss'],
 })
 export class SummaryCardComponent implements OnInit {
-  totalCursos: number = 10;
-  novosCursos: number = 2;
-  totalAlunos: number = 200;
-  alunosMatriculados: number = 150;
-  totalProfessores: number = 15;
-  professoresAtivos: number = 12;
+  @Input() dashboardRelatory!: DashboardRelatory;
 
   constructor() {}
 

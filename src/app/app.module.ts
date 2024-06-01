@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
@@ -36,6 +36,13 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginComponent } from './components/organisms/login/login.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { RegisterComponent } from './components/organisms/register/register.component';
+import { ItensListComponent } from './components/molecules/itens-list/itens-list.component';
+import { CourseListComponent } from './components/organisms/course/course-list/course-list.component';
+import { SearchInputComponent } from './components/atoms/search-input/search-input.component';
+import { ItemStatusComponent } from './components/atoms/item-status/item-status.component';
+import { ItemDetailsComponent } from './components/atoms/item-details/item-details.component';
+import { StudentListComponent } from './components/organisms/student/student-list/student-list.component';
+import { TeacherListComponent } from './components/organisms/teacher/teacher-list/teacher-list.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +67,13 @@ import { RegisterComponent } from './components/organisms/register/register.comp
     AuthFormComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    ItensListComponent,
+    CourseListComponent,
+    SearchInputComponent,
+    ItemStatusComponent,
+    ItemDetailsComponent,
+    StudentListComponent,
+    TeacherListComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +89,7 @@ import { RegisterComponent } from './components/organisms/register/register.comp
     MatSnackBarModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     ApiService,

@@ -1,10 +1,10 @@
 <div class="card">
   <mat-card>
-    <h2>{{ tipo }}</h2>
+    <h2>Pessoas cadastradas recentemente</h2>
     <mat-card-content>
       <mat-list class="list">
         <mat-list-item
-          *ngFor="let pessoa of pessoasFiltradas"
+          *ngFor="let pessoa of dashboardRelatory.recentlyRegistered"
           class="list-item"
         >
           <mat-icon mat-list-icon>person</mat-icon>

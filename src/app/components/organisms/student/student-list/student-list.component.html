@@ -1,0 +1,13 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Alunos</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-itens-list
+      [items]="students"
+      label="Pesquisar Aluno"
+      (update)="onUpdate($event)"
+      (delete)="onDelete($event)"
+    ></app-itens-list>
+  </mat-card-content>
+</mat-card>

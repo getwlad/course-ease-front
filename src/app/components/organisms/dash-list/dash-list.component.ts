@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DashboardRelatory } from 'src/app/models/dashboard-relatory..model';
 
 @Component({
   selector: 'app-dash-list',
@@ -6,35 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./dash-list.component.scss'],
 })
 export class DashListComponent implements OnInit {
-  @Input() tipo: string = 'Alunos';
-  @Input() pessoas: any[] = [
-    {
-      nome: 'Fabio',
-      curso: null,
-      ativo: true,
-      createdAt: new Date('2023-05-01'),
-    },
-    {
-      nome: 'Ana',
-      curso: 'Matemática',
-      ativo: false,
-      createdAt: new Date('2023-04-01'),
-    },
-    {
-      nome: 'Ana',
-      curso: 'Matemática',
-      ativo: false,
-      createdAt: new Date('2023-04-01'),
-    },
-  ];
-
-  pessoasFiltradas: any[] = [];
+  @Input() dashboardRelatory!: DashboardRelatory;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.pessoasFiltradas = this.pessoas
-      .sort((a, b) => b.createdAt - a.createdAt)
-      .slice(0, 50);
+    this.dashboardRelatory.recentlyRegistered =
+      this.dashboardRelatory.recentlyRegistered.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
   }
 }

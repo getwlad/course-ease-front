@@ -1,0 +1,27 @@
+<h3 mat-line>{{ item.name ? item.name : item.personData.name }}</h3>
+
+<!-- Campos específicos para cursos -->
+<span *ngIf="label === 'Pesquisar Curso'" mat-line
+  >Categoria: {{ item.category }}</span
+>
+<span *ngIf="label === 'Pesquisar Curso'" mat-line
+  >Professor: {{ item.teacher }}</span
+>
+
+<!-- Campos específicos para alunos -->
+<span mat-line *ngIf="label === 'Pesquisar Aluno'"
+  >Matrícula: {{ item.enrollment }}</span
+>
+
+<!-- Campos específicos para professores -->
+<span mat-line *ngIf="label === 'Pesquisar Professor'"
+  >Especialização: {{ item.specialization }}</span
+>
+<span mat-line *ngIf="label === 'Pesquisar Professor'"
+  >Anos de Experiência: {{ item.experienceYears }}</span
+>
+
+<span mat-line *ngIf="item.createdAt"
+  >Data de registro: {{ item.createdAt | date }}</span
+>
+<app-item-status [ativo]="item.ativo"></app-item-status>

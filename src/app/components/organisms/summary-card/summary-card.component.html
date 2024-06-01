@@ -5,18 +5,38 @@
       <mat-list>
         <mat-list-item>
           <mat-icon mat-list-icon>school</mat-icon>
-          <h3 mat-line>Total de Cursos: {{ totalCursos }}</h3>
-          <span mat-line>Novos Cursos: {{ novosCursos }}</span>
+          <h3 mat-line>
+            Total de Cursos: {{ dashboardRelatory.totalCourses }}
+          </h3>
+          <span mat-line>Novos Cursos: {{ dashboardRelatory.newCourses }}</span>
+          <span mat-line
+            >Cursos Ativos: {{ dashboardRelatory.activeCourses }}</span
+          >
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>face</mat-icon>
-          <h3 mat-line>Total de Alunos: {{ totalAlunos }}</h3>
-          <span mat-line>Alunos Matriculados: {{ alunosMatriculados }}</span>
+          <h3 mat-line>
+            Total de Alunos: {{ dashboardRelatory.totalStudents }}
+          </h3>
+          <span mat-line
+            >Alunos Matriculados: {{ dashboardRelatory.enrolledStudents }}</span
+          >
+          <span mat-line
+            >Alunos Ativos: {{ dashboardRelatory.activeStudents }}</span
+          >
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>person</mat-icon>
-          <h3 mat-line>Total de Professores: {{ totalProfessores }}</h3>
-          <span mat-line>Professores Ativos: {{ professoresAtivos }}</span>
+          <h3 mat-line>
+            Total de Professores: {{ dashboardRelatory.totalTeachers }}
+          </h3>
+          <span mat-line
+            >Professores Ativos: {{ dashboardRelatory.activeTeachers }}</span
+          >
+          <span mat-line
+            >Professores Lecionando:
+            {{ dashboardRelatory.teachingTeachers }}</span
+          >
         </mat-list-item>
       </mat-list>
     </mat-card-content>
