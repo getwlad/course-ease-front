@@ -1,0 +1,31 @@
+<div class="card">
+  <mat-card>
+    <h2>Gráficos</h2>
+    <div class="container">
+      <div class="graphs">
+        <h3>Cursos com mais alunos matrículados</h3>
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="courseChartData"
+            [options]="charOptions"
+            [type]="charType"
+          >
+          </canvas>
+        </div>
+      </div>
+      <div class="graphs">
+        <h3>Pessoas</h3>
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="genderChartData"
+            [options]="charOptions"
+            [type]="charType"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

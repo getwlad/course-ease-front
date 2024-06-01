@@ -1,0 +1,31 @@
+<div class="card">
+  <mat-card>
+    <h2>{{ tipo }}</h2>
+    <mat-card-content>
+      <mat-list class="list">
+        <mat-list-item
+          *ngFor="let pessoa of pessoasFiltradas"
+          class="list-item"
+        >
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h3 mat-line>{{ pessoa.nome }}</h3>
+          <span
+            mat-line
+            [ngStyle]="{
+              color: pessoa.curso ? '' : 'red'
+            }"
+          >
+            {{ pessoa.curso || "Sem curso" }}
+          </span>
+          <span mat-line>
+            <span
+              class="status-dot"
+              [ngStyle]="{ 'background-color': pessoa.ativo ? 'green' : 'red' }"
+            ></span>
+            {{ pessoa.ativo ? "Ativo" : "Desativado" }}
+          </span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

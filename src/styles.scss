@@ -1,0 +1,26 @@
+@import './src/styles/variables';
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  width: 100%;
+}
+
+header, footer {
+  color: var(--text-color);
+}
+.msg-sucess {
+  background-color: #28a745;
+  color: #fff;
+}
+.msg-error {
+  background-color: red;
+  color: #fff;
+}
