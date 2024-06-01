@@ -28,16 +28,36 @@ export class ApiService {
     this.showMsg('Ocorreu algum erro', true);
     return EMPTY;
   }
-
-  read(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl).pipe(
+  get<T>(endpoint: string): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}${endpoint}`).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl, data).pipe(
+  create<T>(endpoint: string, data: T): Observable<T> {
+    return this.http.post<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e)),
+    );
+  }
+
+  update<T>(endpoint: string, data: T): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e)),
+    );
+  }
+
+  patch<T>(endpoint: string, data: T): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e)),
+    );
+  }
+
+  delete<T>(endpoint: string): Observable<T> {
+    return this.http.delete<T>(`${this.baseUrl}${endpoint}`).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );

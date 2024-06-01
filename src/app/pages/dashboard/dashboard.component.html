@@ -1,5 +1,7 @@
-<section class="dashboard">
+<section *ngIf="dashboardRelatory" class="dashboard">
   <app-summary-card [dashboardRelatory]="dashboardRelatory"></app-summary-card>
   <app-charts [dashboardRelatory]="dashboardRelatory"></app-charts>
   <app-dash-list [dashboardRelatory]="dashboardRelatory"></app-dash-list>
 </section>
+
+<div *ngIf="!dashboardRelatory" class="loading">Loading...</div>
