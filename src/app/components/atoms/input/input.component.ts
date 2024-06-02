@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -12,4 +12,5 @@ export class InputComponent {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() errors: { type: string; message: string }[] = [];
+  @Input() disabled: boolean = false;
 }

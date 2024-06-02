@@ -1,0 +1,59 @@
+<mat-card class="detail-card">
+  <mat-card-header>
+    <mat-card-title class="title">Detalhes do Estudante</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list class="list">
+      <mat-list-item class="list-item">
+        <span mat-line>Nome:</span>
+        <span mat-line>{{ student.personData.name }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>CPF:</span>
+        <span mat-line>{{ student.cpf }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Matrícula:</span>
+        <span mat-line>{{ student.enrollment }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Data de Nascimento:</span>
+        <span mat-line>{{ student.personData.birthDate | date }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Email:</span>
+        <span mat-line>{{ student.personData.email }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Telefone:</span>
+        <span mat-line>{{ student.personData.phone }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Gênero:</span>
+        <span mat-line>{{ student.personData.gender }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Status:</span>
+        <span mat-line>{{ student.active ? "Ativo" : "Desativado" }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Data de cadastro:</span>
+        <span mat-line>{{ student.createdAt }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Curso:</span>
+        <span mat-line>{{
+          student.course ? student.course.name : "Sem curso matriculado"
+        }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <div *ngIf="!isEditing" class="action-buttons-card">
+    <button mat-raised-button color="primary" (click)="toggleEditing()">
+      Editar
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteStudent()">
+      Desativar
+    </button>
+  </div>
+</mat-card>

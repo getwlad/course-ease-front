@@ -1,0 +1,18 @@
+<section class="student-detail">
+  <app-student-details-card
+    *ngIf="!createStudent"
+    [student]="student"
+    [isEditing]="isEditing"
+    (isEditingChange)="updateIsEditing($event)"
+    class="student-detail-card"
+  >
+  </app-student-details-card>
+
+  <app-student-form
+    [createStudent]="createStudent"
+    *ngIf="isEditing || createStudent"
+    class="student-form-card"
+    [student]="student"
+    (isEditingEnd)="updateEndEditing($event)"
+  ></app-student-form>
+</section>

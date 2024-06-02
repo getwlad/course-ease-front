@@ -18,7 +18,10 @@
       <mat-icon class="title-icon" mat-list-icon>{{
         label == "Pesquisar Curso" ? "menu_book" : "person"
       }}</mat-icon>
-      <app-item-details [item]="item" [label]="label"></app-item-details>
+      <app-item-details
+        [item]="item"
+        [type]="getItemType(item)"
+      ></app-item-details>
     </mat-list-item>
   </mat-list>
 </section>

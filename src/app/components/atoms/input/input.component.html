@@ -4,6 +4,7 @@
   [type]="type"
   [placeholder]="placeholder"
   class="mat-input-element"
+  [disabled]="disabled"
 />
 <ng-container *ngFor="let error of errors">
   <mat-error *ngIf="control.hasError(error.type)">

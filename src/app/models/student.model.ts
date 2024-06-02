@@ -2,11 +2,11 @@ import { Course } from './course.model';
 import { Personal } from './personal.model';
 
 export class Student {
-  id: number | null;
+  id?: number | null;
   cpf: string;
-  enrollment: string;
-  active: boolean = true;
-  createdAt: Date;
+  enrollment?: string;
+  active?: boolean = true;
+  createdAt?: Date;
   personData: Personal;
   course?: Course | null = null;
 

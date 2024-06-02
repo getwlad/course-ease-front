@@ -1,0 +1,17 @@
+.student-detail{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+.student-detail-card{
+  max-height: 75vh;
+  width: 50%;
+}
+
+  .student-form-card{
+    flex: 1;
+    width: 50%;
+  }
+
+
+}

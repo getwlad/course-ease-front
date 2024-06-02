@@ -18,9 +18,9 @@ import { MainLayoutComponent } from './components/templates/main-layout/main-lay
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ApiService } from './services/api.service';
 import { CourseItemComponent } from './components/atoms/course-item/course-item.component';
-import { CursosComponent } from './pages/cursos/cursos.component';
-import { AlunosComponent } from './pages/alunos/alunos.component';
-import { ProfessoresComponent } from './pages/professores/professores.component';
+import { CourseListPage } from './pages/course/course-list-page/course-list-page.component';
+import { StudentListPageComponent } from './pages/student/student-list-page/student-list-page.component';
+import { TeacherListPageComponent } from './pages/teacher/teacher-list-page/teacher-list-page.component';
 import { NaoEncontradaComponent } from './pages/nao-encontrada/nao-encontrada.component';
 import { SummaryCardComponent } from './components/organisms/summary-card/summary-card.component';
 import { HeaderComponent } from './components/organisms/header/header.component';
@@ -43,6 +43,16 @@ import { ItemStatusComponent } from './components/atoms/item-status/item-status.
 import { ItemDetailsComponent } from './components/atoms/item-details/item-details.component';
 import { StudentListComponent } from './components/organisms/student/student-list/student-list.component';
 import { TeacherListComponent } from './components/organisms/teacher/teacher-list/teacher-list.component';
+import { CourseDetailsPageComponent } from './pages/course/course-details-page/course-details-page.component';
+import { StudentDetailsPageComponent } from './pages/student/student-details-page/student-details-page.component';
+import { TeacherDetailsPageComponent } from './pages/teacher/teacher-details-page/teacher-details-page.component';
+import { InputFormComponent } from './components/atoms/input-form/input-form.component';
+
+import { TeacherFormComponent } from './components/molecules/teacher-form/teacher-form.component';
+import { CourseFormComponent } from './components/molecules/course-form/course-form.component';
+import { StudentDetailComponent } from './components/organisms/student/student-detail/student-detail.component';
+import { StudentFormComponent } from './components/molecules/student-form/student-form.component';
+import { DetailsCardComponent } from './components/molecules/student-details-card/student-details-card.component';
 
 @NgModule({
   declarations: [
@@ -52,9 +62,9 @@ import { TeacherListComponent } from './components/organisms/teacher/teacher-lis
     CardComponent,
     MainLayoutComponent,
     CourseItemComponent,
-    CursosComponent,
-    AlunosComponent,
-    ProfessoresComponent,
+    CourseListPage,
+    StudentListPageComponent,
+    TeacherListPageComponent,
     NaoEncontradaComponent,
     SummaryCardComponent,
     HeaderComponent,
@@ -74,6 +84,15 @@ import { TeacherListComponent } from './components/organisms/teacher/teacher-lis
     ItemDetailsComponent,
     StudentListComponent,
     TeacherListComponent,
+    CourseDetailsPageComponent,
+    StudentDetailsPageComponent,
+    TeacherDetailsPageComponent,
+    InputFormComponent,
+    StudentFormComponent,
+    TeacherFormComponent,
+    CourseFormComponent,
+    StudentDetailComponent,
+    DetailsCardComponent,
   ],
   imports: [
     BrowserModule,

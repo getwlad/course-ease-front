@@ -9,6 +9,7 @@ import { Course } from 'src/app/models/course.model';
 export class CourseListComponent {
   courses: Course[] = [
     {
+      id: 1,
       name: 'Darsses o de pc',
       createdAt: new Date(),
       description: 'Curso de batismo',

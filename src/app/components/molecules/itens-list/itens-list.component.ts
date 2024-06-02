@@ -1,4 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { type } from 'os';
+import { Course } from 'src/app/models/course.model';
+import { StudentMin } from 'src/app/models/student-min.model';
+import { Student } from 'src/app/models/student.model';
+import { TeacherMin } from 'src/app/models/teacher-min.model';
+import { Teacher } from 'src/app/models/teacher.mode';
+
+type acceptedTypes = Course | TeacherMin | StudentMin;
 
 @Component({
   selector: 'app-itens-list',
@@ -6,14 +15,14 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./itens-list.component.scss'],
 })
 export class ItensListComponent implements OnInit {
-  @Input() items: any[] = [];
+  @Input() items: acceptedTypes[] = [];
   @Input() label: string = '';
   searchTerm: string = '';
-
+  constructor(private router: Router) {}
   @Output() update = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
 
-  filteredItems: any[] = [];
+  filteredItems: acceptedTypes[] = [];
 
   ngOnInit() {
     this.filteredItems = this.items;
@@ -29,22 +38,27 @@ export class ItensListComponent implements OnInit {
     this.highlightedItem = null;
   }
 
-  selectItem(item: any) {
-    console.log('Item selecionado:', item);
+  selectItem(item: Course | TeacherMin | StudentMin) {
+    let itemType: string = this.getItemType(item);
+
+    this.router.navigate([`${itemType}/${item.id}`]);
   }
-  filterItems() {
-    if (this.items.length > 0) {
-      if ('name' in this.items[0]) {
-        this.filteredItems = this.items.filter((item) =>
-          item.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
-        );
-      } else if ('personData' in this.items[0]) {
-        this.filteredItems = this.items.filter((item) =>
-          item.personData.name
-            .toLowerCase()
-            .includes(this.searchTerm.toLowerCase()),
-        );
-      }
+  public getItemType(item: Course | TeacherMin | StudentMin): string {
+    if ('enrollment' in item) {
+      return 'student';
+    } else if ('teacher' in item) {
+      return 'course';
+    } else if ('specialization' in item) {
+      return 'teacher';
+    } else {
+      return 'error';
     }
+  }
+
+  filterItems() {
+    this.filteredItems = this.items.filter(
+      (item: Course | TeacherMin | StudentMin) =>
+        item.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
+    );
   }
 }
