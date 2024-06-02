@@ -17,7 +17,6 @@ import { CardComponent } from './components/molecules/card/card.component';
 import { MainLayoutComponent } from './components/templates/main-layout/main-layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ApiService } from './services/api.service';
-import { CourseItemComponent } from './components/atoms/course-item/course-item.component';
 import { CourseListPage } from './pages/course/course-list-page/course-list-page.component';
 import { StudentListPageComponent } from './pages/student/student-list-page/student-list-page.component';
 import { TeacherListPageComponent } from './pages/teacher/teacher-list-page/teacher-list-page.component';
@@ -48,11 +47,15 @@ import { StudentDetailsPageComponent } from './pages/student/student-details-pag
 import { TeacherDetailsPageComponent } from './pages/teacher/teacher-details-page/teacher-details-page.component';
 import { InputFormComponent } from './components/atoms/input-form/input-form.component';
 
-import { TeacherFormComponent } from './components/molecules/teacher-form/teacher-form.component';
-import { CourseFormComponent } from './components/molecules/course-form/course-form.component';
-import { StudentDetailComponent } from './components/organisms/student/student-detail/student-detail.component';
-import { StudentFormComponent } from './components/molecules/student-form/student-form.component';
-import { DetailsCardComponent } from './components/molecules/student-details-card/student-details-card.component';
+import { TeacherFormComponent } from './components/molecules/teacher/teacher-form/teacher-form.component';
+import { CourseFormComponent } from './components/molecules/course/course-form/course-form.component';
+import { StudentDetailsComponent } from './components/organisms/student/student-details/student-details.component';
+import { StudentFormComponent } from './components/molecules/student/student-form/student-form.component';
+import { DetailsCardComponent } from './components/molecules/student/student-details-card/student-details-card.component';
+import { TeacherDetailsComponent } from './components/organisms/teacher/teacher-details/teacher-details.component';
+import { CourseDetailsComponent } from './components/organisms/course/course-details/course-details.component';
+import { CourseDetailsCardComponent } from './components/molecules/course/course-details-card/course-details-card.component';
+import { TeacherDetailsCardComponent } from './components/molecules/teacher/teacher-details-card/teacher-details-card.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,6 @@ import { DetailsCardComponent } from './components/molecules/student-details-car
     ButtonComponent,
     CardComponent,
     MainLayoutComponent,
-    CourseItemComponent,
     CourseListPage,
     StudentListPageComponent,
     TeacherListPageComponent,
@@ -91,8 +93,12 @@ import { DetailsCardComponent } from './components/molecules/student-details-car
     StudentFormComponent,
     TeacherFormComponent,
     CourseFormComponent,
-    StudentDetailComponent,
+    StudentDetailsComponent,
     DetailsCardComponent,
+    TeacherDetailsComponent,
+    CourseDetailsComponent,
+    CourseDetailsCardComponent,
+    TeacherDetailsCardComponent,
   ],
   imports: [
     BrowserModule,

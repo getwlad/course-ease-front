@@ -1,0 +1,95 @@
+<mat-card class="teacher-card">
+  <mat-card-header>
+    <mat-card-title class="title"
+      >{{ createTeacher ? "Criar" : "Editar" }} Professor</mat-card-title
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="teacherForm" class="teacher-form">
+      <div class="form-group">
+        <span class="input-label">Nome:</span>
+        <app-input
+          placeholder="Nome"
+          [control]="getFormControl('name')"
+        ></app-input>
+      </div>
+      <div class="form-group">
+        <span class="input-label">CPF/CNPJ:</span>
+        <app-input
+          placeholder="CPF/CNPJ"
+          [control]="getFormControl('cpfCnpj')"
+        ></app-input>
+      </div>
+      <div class="form-group">
+        <span class="input-label">Data de Nascimento:</span>
+        <app-input
+          placeholder="Data de Nascimento"
+          [control]="getFormControl('birthDate')"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <span class="input-label">Email:</span>
+        <app-input
+          placeholder="Email"
+          [control]="getFormControl('email')"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <span class="input-label">Telefone:</span>
+        <app-input
+          placeholder="Telefone"
+          [control]="getFormControl('phone')"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <span class="input-label">Gênero:</span>
+        <app-input
+          placeholder="Gênero"
+          [control]="getFormControl('gender')"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <span class="input-label">Especialização:</span>
+        <app-input
+          placeholder="Especialização"
+          [control]="getFormControl('specialization')"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <span class="input-label">Anos de experiência:</span>
+        <app-input
+          placeholder="Anos de experiência"
+          [control]="getFormControl('experienceYears')"
+        ></app-input>
+      </div>
+
+      <div class="form-group" *ngIf="!this.createTeacher">
+        <span class="input-label">Ativo:</span>
+        <app-input
+          placeholder="Ativo"
+          [control]="getFormControl('active')"
+        ></app-input>
+      </div>
+
+      <div class="form-group" *ngIf="!this.createTeacher">
+        <span class="input-label">Criado em:</span>
+        <app-input
+          placeholder="Criado em"
+          [control]="getFormControl('createdAt')"
+          [disabled]="true"
+        ></app-input>
+      </div>
+
+      <div class="action-buttons">
+        <button mat-raised-button color="primary" (click)="save()">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

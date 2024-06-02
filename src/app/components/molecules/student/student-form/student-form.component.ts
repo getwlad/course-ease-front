@@ -78,7 +78,9 @@ export class StudentFormComponent implements OnInit {
       if (!this.createStudent) {
         updatedStudent = {
           ...this.student,
-          active: this.studentForm.value.active == 'true',
+          active:
+            this.studentForm.value.active == 'true' ||
+            this.studentForm.value.active == true,
           ...{ personData },
         };
       }

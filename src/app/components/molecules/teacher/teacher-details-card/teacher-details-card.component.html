@@ -1,0 +1,65 @@
+<mat-card class="detail-card">
+  <mat-card-header>
+    <mat-card-title class="title">Detalhes do Professor</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list class="list">
+      <mat-list-item class="list-item">
+        <span mat-line>Nome:</span>
+        <span mat-line>{{ teacher.personData.name }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>CPF/CNPJ:</span>
+        <span mat-line>{{ teacher.cpfCnpj }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Data de Nascimento:</span>
+        <span mat-line>{{
+          teacher.personData.birthDate | date: "dd/MM/yyyy"
+        }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Email:</span>
+        <span mat-line>{{ teacher.personData.email }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Telefone:</span>
+        <span mat-line>{{ teacher.personData.phone }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Gênero:</span>
+        <span mat-line>{{ teacher.personData.gender }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Especialização:</span>
+        <span mat-line>{{ teacher.specialization }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Anos de experiência:</span>
+        <span mat-line>{{ teacher.experienceYears }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Status:</span>
+        <span mat-line>{{ teacher.active ? "Ativo" : "Desativado" }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Data de cadastro:</span>
+        <span mat-line>{{ teacher.createdAt | date: "dd/MM/yyyy" }}</span>
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <span mat-line>Curso:</span>
+        <span mat-line>{{
+          teacher.course ? teacher.course.name : "Sem curso matriculado"
+        }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <div *ngIf="!isEditing" class="action-buttons-card">
+    <button mat-raised-button color="primary" (click)="toggleEditing()">
+      Editar
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteteacher()">
+      Desativar
+    </button>
+  </div>
+</mat-card>

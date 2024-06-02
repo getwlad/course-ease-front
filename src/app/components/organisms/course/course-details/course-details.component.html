@@ -1,0 +1,27 @@
+<section class="course-detail">
+  <app-course-details-card
+    *ngIf="!createCourse"
+    [course]="course"
+    [isEditing]="isEditing"
+    (isEditingChange)="updateIsEditing($event)"
+    class="course-detail-card"
+  >
+  </app-course-details-card>
+
+  <div *ngIf="!isEditing && !createCourse" class="course-members">
+    <app-itens-list
+      [items]="course.students!"
+      label="Pesquisar Aluno"
+      class="student-list"
+    ></app-itens-list>
+    <h3 class="teacher">Professor responsável: {{ teacherName }}</h3>
+  </div>
+
+  <app-course-form
+    [createCourse]="createCourse"
+    *ngIf="isEditing || createCourse"
+    class="course-form-card"
+    [course]="course"
+    (isEditingEnd)="updateEndEditing($event)"
+  ></app-course-form>
+</section>

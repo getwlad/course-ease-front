@@ -16,6 +16,6 @@
 >
 
 <span mat-line *ngIf="item.createdAt"
-  >Data de registro: {{ item.createdAt | date }}</span
+  >Data de registro: {{ item.createdAt | date: "dd/MM/yyyy" }}</span
 >
 <app-item-status [ativo]="item.active"></app-item-status>

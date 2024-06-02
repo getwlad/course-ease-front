@@ -2,13 +2,13 @@ import { Course } from './course.model';
 import { Personal } from './personal.model';
 
 export class Teacher {
-  id: number | null;
+  id?: number | null;
   cpfCnpj: string;
   specialization: string;
   experienceYears: number;
   active: boolean = true;
   personData: Personal;
-  createdAt: Date;
+  createdAt?: Date;
   course?: Course | null = null;
   courseId?: number;
 

@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/models/student.model';
 
 @Component({
-  selector: 'app-student-detail',
-  templateUrl: './student-detail.component.html',
-  styleUrls: ['./student-detail.component.scss'],
+  selector: 'app-student-details',
+  templateUrl: './student-details.component.html',
+  styleUrls: ['./student-details.component.scss'],
 })
-export class StudentDetailComponent implements OnInit {
+export class StudentDetailsComponent implements OnInit {
   studentId!: string;
   createStudent: boolean = false;
   student: Student = {

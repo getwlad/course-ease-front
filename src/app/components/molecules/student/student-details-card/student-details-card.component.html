@@ -18,7 +18,9 @@
       </mat-list-item>
       <mat-list-item class="list-item">
         <span mat-line>Data de Nascimento:</span>
-        <span mat-line>{{ student.personData.birthDate | date }}</span>
+        <span mat-line>{{
+          student.personData.birthDate | date: "dd/MM/yyyy"
+        }}</span>
       </mat-list-item>
       <mat-list-item class="list-item">
         <span mat-line>Email:</span>
@@ -38,7 +40,7 @@
       </mat-list-item>
       <mat-list-item class="list-item">
         <span mat-line>Data de cadastro:</span>
-        <span mat-line>{{ student.createdAt }}</span>
+        <span mat-line>{{ student.createdAt | date: "dd/MM/yyyy" }}</span>
       </mat-list-item>
       <mat-list-item class="list-item">
         <span mat-line>Curso:</span>
