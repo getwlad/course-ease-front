@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
@@ -18,7 +19,10 @@ export class CourseFormComponent implements OnInit {
   @Output() isEditingEnd = new EventEmitter<Course>();
   courseForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+  ) {
     this.courseForm = this.fb.group({
       name: ['', Validators.required],
       category: ['', Validators.required],
@@ -38,7 +42,7 @@ export class CourseFormComponent implements OnInit {
         category: this.course.category,
         description: this.course.description,
         active: this.course.active,
-        createdAt: this.course.createdAt,
+        createdAt: this.datePipe.transform(this.course.createdAt, 'dd/MM/yyyy'),
       });
     }
   }
@@ -48,10 +52,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.courseForm.value);
     if (this.courseForm.valid) {
-      console.log('Dados do Curso:', this.courseForm.value);
-
       let updatedCourse: Course = {
         name: this.courseForm.value.name,
         category: this.courseForm.value.category,

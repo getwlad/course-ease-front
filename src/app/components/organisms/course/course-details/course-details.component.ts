@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course.model';
-import { Teacher } from 'src/app/models/teacher.mode';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-course-details',
@@ -12,85 +12,20 @@ export class CourseDetailsComponent implements OnInit {
   courseId!: string;
   createCourse: boolean = false;
   teacherName: string = 'Sem professor registrado.';
-  course: Course = {
-    id: 1,
-    name: 'Introdução à Programação',
-    description: 'Um curso introdutório sobre programação.',
-    category: 'blabla',
-    active: true,
-    createdAt: new Date(),
-    teacher: 'João Silva',
-    students: [
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-      {
-        id: 1,
-        name: 'John Doe',
-        createdAt: new Date(),
-        enrollment: 'Programação',
-        active: true,
-      },
-    ],
-  };
+  course!: Course;
   isEditing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private courseService: CourseService,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.courseId = params['id'];
       if (parseInt(this.courseId)) {
-        //this.studentService.getStudent(this.studentId).subscribe((student) => { this.student = student;});
-        if (this.course.teacher) {
-          if (typeof this.course.teacher === 'string') {
-            this.teacherName = this.course.teacher;
-          } else if (this.course.teacher instanceof Teacher) {
-            this.teacherName = this.course.teacher.personData.name;
-          }
-        }
+        this.loadCourse(parseInt(this.courseId));
       } else {
         this.createCourse = true;
       }
@@ -108,25 +43,64 @@ export class CourseDetailsComponent implements OnInit {
       description: courseUpdate.description,
       active: courseUpdate.active,
     };
-    console.log(this.course);
-    this.isEditing = false;
     if (this.createCourse) {
       this.course = courseUpdate;
+      this.saveNewcourse(this.course);
       this.createCourse = false;
+    } else {
+      this.saveChanges(this.course);
     }
+    this.isEditing = false;
   }
-  saveChanges() {
-    //this.studentService.updateStudent(this.student).subscribe(() => {});
+  loadCourse(id: number) {
+    this.courseService.getCourseById(id).subscribe(
+      (course: Course) => {
+        this.course = course;
+
+        if (this.course.teacher) {
+          if (typeof this.course.teacher === 'string') {
+            this.teacherName = this.course.teacher;
+          } else if (typeof this.course.teacher === 'object') {
+            this.teacherName = this.course.teacher.name;
+          }
+        }
+      },
+      (error) => {
+        console.error('Erro ao carregar curso:', error);
+      },
+    );
+  }
+  saveNewcourse(course: Course) {
+    this.courseService.createCourse(course).subscribe(
+      (course: Course) => {
+        this.course = course;
+      },
+      (error) => {
+        console.error('Erro ao salvar curso:', error);
+      },
+    );
   }
 
-  deleteStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
+  deletecourse(confirmation: boolean) {
+    if (confirmation && this.course.id) {
+      this.courseService.deleteCourse(this.course.id).subscribe(
+        () => {
+          this.course.active = false;
+        },
+        (error) => {
+          console.error('Erro ao desativar o curso:', error);
+        },
+      );
     }
   }
-  updateStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
-    }
+  saveChanges(course: Course) {
+    this.courseService.updateCourse(course.id!, course).subscribe(
+      (courseResponse: Course) => {
+        this.course = courseResponse;
+      },
+      (error) => {
+        console.error('Erro ao atualizar o curso:', error);
+      },
+    );
   }
 }

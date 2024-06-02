@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
@@ -19,7 +20,10 @@ export class StudentFormComponent implements OnInit {
   @Output() isEditingEnd = new EventEmitter<Student>();
   studentForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+  ) {
     this.studentForm = this.fb.group({
       cpf: [{ value: '', disabled: true }, Validators.required],
       enrollment: [{ value: '', disabled: true }],
@@ -43,9 +47,15 @@ export class StudentFormComponent implements OnInit {
         cpf: this.student.cpf,
         enrollment: this.student.enrollment,
         active: this.student.active,
-        createdAt: this.student.createdAt,
+        createdAt: this.datePipe.transform(
+          this.student.createdAt,
+          'dd/MM/yyyy',
+        ),
         name: this.student.personData.name,
-        birthDate: this.student.personData.birthDate,
+        birthDate: this.datePipe.transform(
+          this.student.personData.birthDate,
+          'dd/MM/yyyy',
+        ),
         email: this.student.personData.email,
         phone: this.student.personData.phone,
         gender: this.student.personData.gender,
@@ -58,13 +68,10 @@ export class StudentFormComponent implements OnInit {
   }
 
   save() {
-    const end: boolean = true;
-    console.log(this.studentForm.value);
     if (this.studentForm.valid) {
-      console.log('Dados do Estudante:', this.studentForm.value);
       const personData: Personal = {
         name: this.studentForm.value.name,
-        birthDate: new Date(this.studentForm.value.birthDate),
+        birthDate: new Date(this.studentForm.value.birthDate).toISOString(),
         email: this.studentForm.value.email,
         phone: this.studentForm.value.phone,
         gender: this.studentForm.value.gender,

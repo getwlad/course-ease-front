@@ -1,105 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course.model';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss'],
 })
-export class CourseListComponent {
-  courses: Course[] = [
-    {
-      id: 1,
-      name: 'Darsses o de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-    {
-      name: 'Curso de manutenção de pc',
-      createdAt: new Date(),
-      description: 'Curso de batismo',
-      category: 'Programação',
-      active: true,
-      teacher: 'Usuario 1214',
-    },
-  ];
-
-  onSubmit(name: string) {}
+export class CourseListComponent implements OnInit {
+  courses: Course[] = [];
+  constructor(private courseService: CourseService) {}
+  ngOnInit(): void {
+    this.loadCourses();
+  }
+  loadCourses() {
+    this.courseService.getCourses().subscribe(
+      (courses: Course[]) => {
+        this.courses = courses;
+      },
+      (error) => {
+        console.error('Erro ao carregar cursos:', error);
+      },
+    );
+  }
 
   onUpdate(item: any) {}
 

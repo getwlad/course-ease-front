@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Teacher } from 'src/app/models/teacher.mode';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-teacher-details',
@@ -10,42 +11,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TeacherDetailsComponent implements OnInit {
   teacherId!: string;
   createTeacher: boolean = false;
-  teacher: Teacher = {
-    id: 1,
-    cpfCnpj: '12345678900',
-    specialization: 'Programação',
-    experienceYears: 5,
-    active: true,
-    personData: {
-      name: 'João Silva',
-      birthDate: new Date('1990-01-01'),
-      phone: '62999686868',
-      email: 'joao.silva@email.com',
-      gender: 'masculino',
-    },
-    createdAt: new Date(),
-    course: {
-      id: 1,
-      name: 'Introdução à Programação',
-      description: 'Um curso introdutório sobre programação.',
-      category: 'blabla',
-      active: true,
-      createdAt: new Date(),
-      teacher: 'João Silva',
-    },
-  };
+  teacher!: Teacher;
+
   isEditing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private teacherService: TeacherService,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.teacherId = params['id'];
       if (parseInt(this.teacherId)) {
-        //this.studentService.getStudent(this.studentId).subscribe((student) => { this.student = student;});
+        this.loadTeacher(parseInt(this.teacherId));
       } else {
         this.createTeacher = true;
       }
@@ -56,29 +36,61 @@ export class TeacherDetailsComponent implements OnInit {
     this.isEditing = isEditing;
   }
   updateEndEditing(teacherUpdate: Teacher) {
-    this.teacher.active = teacherUpdate.active;
-    this.teacher.experienceYears = teacherUpdate.experienceYears;
-    this.teacher.specialization = teacherUpdate.specialization;
-    this.teacher.personData = teacherUpdate.personData;
-    console.log(this.teacher);
-    this.isEditing = false;
     if (this.createTeacher) {
       this.teacher = teacherUpdate;
+      this.saveNewTeacher(this.teacher);
       this.createTeacher = false;
+    } else {
+      this.teacher.active = teacherUpdate.active;
+      this.teacher.experienceYears = teacherUpdate.experienceYears;
+      this.teacher.specialization = teacherUpdate.specialization;
+      this.teacher.personData = teacherUpdate.personData;
+      this.saveChanges(this.teacher);
     }
-  }
-  saveChanges() {
-    //this.studentService.updateStudent(this.student).subscribe(() => {});
+    this.isEditing = false;
   }
 
-  deleteStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
+  loadTeacher(id: number) {
+    this.teacherService.getTeacherById(id).subscribe(
+      (teacher: Teacher) => {
+        this.teacher = teacher;
+      },
+      (error) => {
+        console.error('Erro ao carregar professor:', error);
+      },
+    );
+  }
+  saveNewTeacher(teacher: Teacher) {
+    this.teacherService.createTeacher(teacher).subscribe(
+      (teacher: Teacher) => {
+        this.teacher = teacher;
+      },
+      (error) => {
+        console.error('Erro ao salvar professor:', error);
+      },
+    );
+  }
+
+  deleteTeacher(confirmation: boolean) {
+    if (confirmation && this.teacher.id) {
+      this.teacherService.deleteTeacher(this.teacher.id).subscribe(
+        () => {
+          this.teacher.active = false;
+        },
+        (error) => {
+          console.error('Erro ao desativar o professor:', error);
+        },
+      );
     }
   }
-  updateStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
-    }
+  saveChanges(teacher: Teacher) {
+    this.teacherService.updateTeacher(teacher.id!, teacher).subscribe(
+      (teacherResponse: Teacher) => {
+        this.teacher = teacherResponse;
+      },
+      (error) => {
+        console.error('Erro ao atualizar o professor:', error);
+      },
+    );
   }
 }

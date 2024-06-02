@@ -12,6 +12,7 @@ export class DetailsCardComponent implements OnInit {
   @Input() isEditing: boolean = false;
   @Output() studentChange = new EventEmitter<Student>();
   @Output() isEditingChange = new EventEmitter<boolean>();
+  @Output() deleteStudent = new EventEmitter<boolean>();
   studentKeys: (keyof Student | keyof Personal)[] = [
     'id',
     'createdAt',
@@ -31,10 +32,9 @@ export class DetailsCardComponent implements OnInit {
     this.isEditing = !this.isEditing;
     this.isEditingChange.emit(this.isEditing);
   }
-  deleteStudent() {
+  deletestudent() {
     if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
-      this.student.active = false;
+      this.deleteStudent.emit(true);
     }
   }
 }

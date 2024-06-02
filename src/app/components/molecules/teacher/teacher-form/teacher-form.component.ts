@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
@@ -19,7 +20,10 @@ export class TeacherFormComponent implements OnInit {
   @Output() isEditingEnd = new EventEmitter<Teacher>();
   teacherForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private datePipe: DatePipe,
+  ) {
     this.teacherForm = this.fb.group({
       cpfCnpj: [{ value: '', disabled: true }, Validators.required],
       specialization: ['', Validators.required],
@@ -45,9 +49,15 @@ export class TeacherFormComponent implements OnInit {
         specialization: this.teacher.specialization,
         experienceYears: this.teacher.experienceYears,
         active: this.teacher.active,
-        createdAt: this.teacher.createdAt,
+        createdAt: this.datePipe.transform(
+          this.teacher.createdAt,
+          'dd/MM/yyyy',
+        ),
         name: this.teacher.personData.name,
-        birthDate: this.teacher.personData.birthDate,
+        birthDate: this.datePipe.transform(
+          this.teacher.personData.birthDate,
+          'dd/MM/yyyy',
+        ),
         email: this.teacher.personData.email,
         phone: this.teacher.personData.phone,
         gender: this.teacher.personData.gender,
@@ -63,7 +73,7 @@ export class TeacherFormComponent implements OnInit {
     if (this.teacherForm.valid) {
       const personData: Personal = {
         name: this.teacherForm.value.name,
-        birthDate: new Date(this.teacherForm.value.birthDate),
+        birthDate: new Date(this.teacherForm.value.birthDate).toISOString(),
         email: this.teacherForm.value.email,
         phone: this.teacherForm.value.phone,
         gender: this.teacherForm.value.gender,

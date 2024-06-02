@@ -56,6 +56,7 @@ import { TeacherDetailsComponent } from './components/organisms/teacher/teacher-
 import { CourseDetailsComponent } from './components/organisms/course/course-details/course-details.component';
 import { CourseDetailsCardComponent } from './components/molecules/course/course-details-card/course-details-card.component';
 import { TeacherDetailsCardComponent } from './components/molecules/teacher/teacher-details-card/teacher-details-card.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { TeacherDetailsCardComponent } from './components/molecules/teacher/teac
       useClass: AuthInterceptor,
       multi: true,
     },
+    DatePipe,
   ],
   bootstrap: [AppComponent],
 })

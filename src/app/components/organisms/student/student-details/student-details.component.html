@@ -1,9 +1,10 @@
-<section class="student-detail">
+<section class="student-detail" *ngIf="student || createStudent">
   <app-student-details-card
     *ngIf="!createStudent"
     [student]="student"
     [isEditing]="isEditing"
     (isEditingChange)="updateIsEditing($event)"
+    (deleteStudent)="deletestudent($event)"
     class="student-detail-card"
   >
   </app-student-details-card>

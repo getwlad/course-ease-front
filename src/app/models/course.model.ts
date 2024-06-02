@@ -1,5 +1,6 @@
 import { StudentMin } from './student-min.model';
-import { Teacher } from './teacher.mode';
+import { TeacherMin } from './teacher-min.model';
+
 export class Course {
   id?: number;
   name: string;
@@ -7,7 +8,7 @@ export class Course {
   active: boolean;
   description: string;
   createdAt: Date;
-  teacher?: Teacher | string;
+  teacher?: TeacherMin | string;
   students?: StudentMin[] = [];
   constructor(
     id: number,
@@ -15,7 +16,7 @@ export class Course {
     category: string,
     active: boolean,
     description: string,
-    teacher: Teacher | string,
+    teacher: TeacherMin | string,
     students: StudentMin[],
     createdAt: Date,
   ) {

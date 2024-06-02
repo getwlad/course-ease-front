@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Student } from 'src/app/models/student.model';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student-details',
@@ -11,32 +12,20 @@ import { Student } from 'src/app/models/student.model';
 export class StudentDetailsComponent implements OnInit {
   studentId!: string;
   createStudent: boolean = false;
-  student: Student = {
-    id: 1,
-    createdAt: new Date(),
-    enrollment: 'Programação',
-    active: true,
-    cpf: '12345678900',
-    personData: {
-      name: 'qwewqe',
-      birthDate: new Date(),
-      phone: '62999686868',
-      email: 'okook@email.com',
-      gender: 'masculino',
-    },
-  };
+  student!: Student;
   isEditing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private studentService: StudentService,
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.studentId = params['id'];
       if (parseInt(this.studentId)) {
-        //this.studentService.getStudent(this.studentId).subscribe((student) => { this.student = student;});
+        this.loadStudent(parseInt(this.studentId));
       } else {
         this.createStudent = true;
       }
@@ -47,27 +36,58 @@ export class StudentDetailsComponent implements OnInit {
     this.isEditing = isEditing;
   }
   updateEndEditing(studentUpdate: Student) {
-    this.student.active = studentUpdate.active;
-    this.student.personData = studentUpdate.personData;
-    console.log(this.student);
-    this.isEditing = false;
     if (this.createStudent) {
       this.student = studentUpdate;
+      this.saveNewstudent(this.student);
       this.createStudent = false;
+    } else {
+      this.student.active = studentUpdate.active;
+      this.student.personData = studentUpdate.personData;
+      this.saveChanges(this.student);
     }
+    this.isEditing = false;
   }
-  saveChanges() {
-    //this.studentService.updateStudent(this.student).subscribe(() => {});
+  loadStudent(id: number) {
+    this.studentService.getStudentById(id).subscribe(
+      (student: Student) => {
+        this.student = student;
+      },
+      (error) => {
+        console.error('Erro ao carregar professor:', error);
+      },
+    );
+  }
+  saveNewstudent(student: Student) {
+    this.studentService.createStudent(student).subscribe(
+      (student: Student) => {
+        this.student = student;
+      },
+      (error) => {
+        console.error('Erro ao salvar professor:', error);
+      },
+    );
   }
 
-  deleteStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
+  deletestudent(confirmation: boolean) {
+    if (confirmation && this.student.id) {
+      this.studentService.deleteStudent(this.student.id).subscribe(
+        () => {
+          this.student.active = false;
+        },
+        (error) => {
+          console.error('Erro ao desativar o professor:', error);
+        },
+      );
     }
   }
-  updateStudent() {
-    if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.studentService.deleteStudent(this.studentId).subscribe(() => {});
-    }
+  saveChanges(student: Student) {
+    this.studentService.updateStudent(student.id!, student).subscribe(
+      (studentResponse: Student) => {
+        this.student = studentResponse;
+      },
+      (error) => {
+        console.error('Erro ao atualizar o professor:', error);
+      },
+    );
   }
 }

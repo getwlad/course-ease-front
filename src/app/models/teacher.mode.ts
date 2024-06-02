@@ -2,7 +2,7 @@ import { Course } from './course.model';
 import { Personal } from './personal.model';
 
 export class Teacher {
-  id?: number | null;
+  id?: number;
   cpfCnpj: string;
   specialization: string;
   experienceYears: number;
@@ -13,7 +13,7 @@ export class Teacher {
   courseId?: number;
 
   constructor(
-    id: number | null,
+    id: number,
     cpfCnpj: string,
     specialization: string,
     experienceYears: number,

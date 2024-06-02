@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TeacherMin } from 'src/app/models/teacher-min.model';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-teacher-list',
@@ -7,58 +8,23 @@ import { TeacherMin } from 'src/app/models/teacher-min.model';
   styleUrls: ['./teacher-list.component.scss'],
 })
 export class TeacherListComponent {
-  teachers: TeacherMin[] = [
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-    {
-      id: 1,
-      name: 'Baes Doe',
-      createdAt: new Date(),
-      specialization: 'Programação',
-      experienceYears: 6,
-      active: true,
-    },
-  ];
+  teachers: TeacherMin[] = [];
+  constructor(private teacherService: TeacherService) {}
 
-  onSubmit(name: string) {}
+  ngOnInit(): void {
+    this.loadTeachers();
+  }
+  loadTeachers() {
+    this.teacherService.getTeachers().subscribe(
+      (teachers: TeacherMin[]) => {
+        this.teachers = teachers;
+      },
+      (error) => {
+        console.error('Erro ao carregar estudantes:', error);
+        this.teachers = [];
+      },
+    );
+  }
 
   onUpdate(item: any) {}
 

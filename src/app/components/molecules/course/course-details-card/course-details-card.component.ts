@@ -11,6 +11,7 @@ export class CourseDetailsCardComponent implements OnInit {
   @Input() isEditing: boolean = false;
   @Output() courseChange = new EventEmitter<Course>();
   @Output() isEditingChange = new EventEmitter<boolean>();
+  @Output() deleteCourse = new EventEmitter<boolean>();
   constructor() {}
 
   ngOnInit(): void {}
@@ -20,8 +21,7 @@ export class CourseDetailsCardComponent implements OnInit {
   }
   deletecourse() {
     if (confirm('Tem certeza de que deseja desativar este estudante?')) {
-      //this.courseService.deletecourse(this.courseId).subscribe(() => {});
-      this.course.active = false;
+      this.deleteCourse.emit(true);
     }
   }
 }
