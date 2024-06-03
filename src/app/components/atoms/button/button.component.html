@@ -3,6 +3,7 @@
   [disabled]="disabled"
   (click)="onClick.emit()"
   class="mat-raised-button"
+  [class.red-button]="redColor"
 >
   <ng-content></ng-content>
 </button>

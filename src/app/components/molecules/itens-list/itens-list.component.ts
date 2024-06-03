@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { type } from 'os';
 import { Course } from 'src/app/models/course.model';
@@ -17,17 +24,26 @@ type acceptedTypes = Course | TeacherMin | StudentMin;
 export class ItensListComponent implements OnInit {
   @Input() items: acceptedTypes[] = [];
   @Input() label: string = '';
-  searchTerm: string = '';
-  constructor(private router: Router) {}
   @Output() update = new EventEmitter<any>();
-  @Output() delete = new EventEmitter<any>();
+  @Input() editing: boolean = false;
+  @Input() selectedItems: number[] = [];
+  @Input() redColor: boolean = false;
 
+  searchTerm: string = '';
   filteredItems: acceptedTypes[] = [];
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.filteredItems = this.items;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items']) {
+      this.filteredItems = changes['items'].currentValue;
+      this.filterItems();
+    }
+  }
   highlightedItem: any;
 
   highlightItem(item: any) {
@@ -39,9 +55,18 @@ export class ItensListComponent implements OnInit {
   }
 
   selectItem(item: Course | TeacherMin | StudentMin) {
-    let itemType: string = this.getItemType(item);
-
-    this.router.navigate([`${itemType}/${item.id}`]);
+    if (!this.editing) {
+      let itemType: string = this.getItemType(item);
+      this.router.navigate([`${itemType}/${item.id}`]);
+    }
+    if (item.id) {
+      const index = this.selectedItems.indexOf(item.id);
+      if (index === -1) {
+        this.selectedItems.push(item.id);
+      } else {
+        this.selectedItems.splice(index, 1);
+      }
+    }
   }
   public getItemType(item: Course | TeacherMin | StudentMin): string {
     if ('enrollment' in item) {
@@ -60,5 +85,9 @@ export class ItensListComponent implements OnInit {
       (item: Course | TeacherMin | StudentMin) =>
         item.name.toLowerCase().includes(this.searchTerm.toLowerCase()),
     );
+  }
+
+  isItemSelected(itemId: any) {
+    return this.selectedItems.includes(itemId);
   }
 }

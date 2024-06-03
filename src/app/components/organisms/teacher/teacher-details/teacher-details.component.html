@@ -1,3 +1,7 @@
+<div *ngIf="!teacher && !createTeacher" class="overlay">
+  <div class="spinner">Carregando...</div>
+</div>
+
 <section class="teacher-detail" *ngIf="teacher || createTeacher">
   <app-teacher-details-card
     *ngIf="!createTeacher"

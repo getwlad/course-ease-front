@@ -62,3 +62,10 @@ app-item-details{
   outline: none;
   border-color: var(--primary-color)
 }
+.list-item.selected {
+  background-color: lightblue;
+  &.redColor {
+    background-color: lightcoral;
+  }
+
+}

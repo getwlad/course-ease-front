@@ -46,7 +46,7 @@ import { CourseDetailsPageComponent } from './pages/course/course-details-page/c
 import { StudentDetailsPageComponent } from './pages/student/student-details-page/student-details-page.component';
 import { TeacherDetailsPageComponent } from './pages/teacher/teacher-details-page/teacher-details-page.component';
 import { InputFormComponent } from './components/atoms/input-form/input-form.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TeacherFormComponent } from './components/molecules/teacher/teacher-form/teacher-form.component';
 import { CourseFormComponent } from './components/molecules/course/course-form/course-form.component';
 import { StudentDetailsComponent } from './components/organisms/student/student-details/student-details.component';
@@ -116,6 +116,7 @@ import { DatePipe } from '@angular/common';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     ApiService,

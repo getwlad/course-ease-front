@@ -2,10 +2,18 @@ button.mat-raised-button {
   width: 100%;
   margin-top: 16px;
   font-size: 16px;
-  background-color: var(--secondary-color);
-  color: #fff;
-}
-button.mat-raised-button:hover {
-  color: #f0f0f0;
   background-color: var(--primary-color);
+  color: #fff;
+  &:hover{
+    color: #f0f0f0;
+    background-color: var(--secondary-color);
+  }
+
+}
+button.mat-raised-button.red-button {
+  background-color: #e57373;
+}
+
+button.mat-raised-button.red-button:hover {
+  background-color: #d32f2f;
 }

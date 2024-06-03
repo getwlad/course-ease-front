@@ -16,11 +16,38 @@ body {
 header, footer {
   color: var(--text-color);
 }
-.msg-sucess {
-  background-color: #28a745;
-  color: #fff;
-}
-.msg-error {
-  background-color: red;
-  color: #fff;
+
+:root{
+  .loading-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 8px;
+    align-self: center;
+  }
+  .msg-sucess {
+    background-color: #28a745;
+    color: #fff;
+  }
+  .msg-error {
+    background-color: red;
+    color: #fff;
+  }
+  mat-progress-spinner{
+    align-self: center;
+    color: var(--primary-color);
+  }
+  .overlay {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - (56px + 40px));
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 }

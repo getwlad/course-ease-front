@@ -13,8 +13,8 @@ export class StudentService {
   constructor(private apiService: ApiService) {}
 
   // GET all students
-  getStudents(): Observable<StudentMin[]> {
-    return this.apiService.get<StudentMin[]>(this.endpoint);
+  getStudents(params?: any): Observable<StudentMin[]> {
+    return this.apiService.get<StudentMin[]>(this.endpoint, params);
   }
 
   // GET student by ID
@@ -35,5 +35,9 @@ export class StudentService {
   // DELETE student
   deleteStudent(id: number): Observable<void> {
     return this.apiService.delete<void>(`${this.endpoint}/${id}`);
+  }
+
+  showMsg(msg: string, erro?: boolean): void {
+    this.apiService.showMsg(msg, erro);
   }
 }

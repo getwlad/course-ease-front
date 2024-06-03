@@ -1,6 +1,14 @@
+<div *ngIf="loadingStudents && editingStudents" class="overlay">
+  <div class="spinner">Carregando...</div>
+</div>
+
+<div *ngIf="!course && !createCourse" class="overlay">
+  <div class="spinner">Carregando...</div>
+</div>
+
 <section class="course-detail" *ngIf="course || createCourse">
   <app-course-details-card
-    *ngIf="!createCourse"
+    *ngIf="!createCourse && !editingStudents && !loadingStudents"
     [course]="course"
     [isEditing]="isEditing"
     (isEditingChange)="updateIsEditing($event)"
@@ -9,12 +17,48 @@
   >
   </app-course-details-card>
 
+  <div class="all-students" *ngIf="editingStudents || loadingStudents">
+    <mat-progress-spinner
+      *ngIf="loadingStudents && !editingStudents"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+    <p *ngIf="loadingStudents && !editingStudents" class="loading-text">
+      Aguarde, carregando os dados...
+    </p>
+
+    <ng-container *ngIf="(editingStudents && students) || !loadingStudents">
+      <app-button class="add-buton" (onClick)="updateEditingStudent()"
+        ><span class="material-symbols-outlined"> add </span
+        >Confirmar</app-button
+      >
+      <app-itens-list
+        [selectedItems]="addStudentsIds"
+        [editing]="editingStudents"
+        [items]="students!"
+        label="Pesquisar Aluno"
+        class="student-list"
+      ></app-itens-list>
+    </ng-container>
+  </div>
+
   <div *ngIf="!isEditing && !createCourse" class="course-members">
+    <app-button
+      class="add-buton"
+      (onClick)="toggleEditingStudent()"
+      [redColor]="editingStudents"
+      ><span class="material-symbols-outlined"> add </span
+      >{{ editingStudents ? "Cancelar" : "Editar" }}</app-button
+    >
+
     <app-itens-list
+      [selectedItems]="removeStudentsIds"
+      [editing]="editingStudents"
       [items]="course.students!"
+      [redColor]="editingStudents"
       label="Pesquisar Aluno"
       class="student-list"
     ></app-itens-list>
+
     <h3 class="teacher">Professor responsável: {{ teacherName }}</h3>
   </div>
 

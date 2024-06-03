@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { catchError, map, timeout } from 'rxjs/operators';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'https://courseease.onrender.com/';
+  private baseUrl = 'http://localhost:3000/';
 
   constructor(
     private http: HttpClient,
@@ -28,15 +28,29 @@ export class ApiService {
     this.showMsg('Ocorreu algum erro', true);
     return EMPTY;
   }
-  get<T>(endpoint: string): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${endpoint}`).pipe(
-      map((obj) => obj),
-      catchError((e) => this.errorHandler(e)),
-    );
+  get<T>(endpoint: string, params?: any): Observable<T> {
+    let httpParams = new HttpParams();
+
+    if (params) {
+      for (const key in params) {
+        if (params.hasOwnProperty(key)) {
+          httpParams = httpParams.set(key, params[key]);
+        }
+      }
+    }
+
+    return this.http
+      .get<T>(`${this.baseUrl}${endpoint}`, { params: httpParams })
+      .pipe(
+        timeout(5000),
+        map((obj) => obj),
+        catchError((e) => this.errorHandler(e)),
+      );
   }
 
   create<T>(endpoint: string, data: T): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      timeout(5000),
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );
@@ -44,6 +58,7 @@ export class ApiService {
 
   update<T>(endpoint: string, data: T): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      timeout(5000),
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );
@@ -51,6 +66,7 @@ export class ApiService {
 
   patch<T>(endpoint: string, data: T): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}${endpoint}`, data).pipe(
+      timeout(5000),
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );
@@ -58,6 +74,7 @@ export class ApiService {
 
   delete<T>(endpoint: string): Observable<T> {
     return this.http.delete<T>(`${this.baseUrl}${endpoint}`).pipe(
+      timeout(5000),
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     );

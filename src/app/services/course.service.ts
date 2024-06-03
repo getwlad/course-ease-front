@@ -35,4 +35,16 @@ export class CourseService {
   deleteCourse(id: number): Observable<Course> {
     return this.apiService.delete<Course>(`${this.endpoint}/${id}`);
   }
+
+  removeStudents(id: number, removeStudentsIds: number[]): Observable<any> {
+    return this.apiService.create<any>(
+      `${this.endpoint}/${id}/student/remove`,
+      { studentIds: removeStudentsIds },
+    );
+  }
+  addStudents(id: number, addStudentsIds: number[]): Observable<any> {
+    return this.apiService.create<any>(`${this.endpoint}/${id}/student`, {
+      studentIds: addStudentsIds,
+    });
+  }
 }

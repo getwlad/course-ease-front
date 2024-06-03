@@ -14,6 +14,8 @@
       (mouseover)="highlightItem(item)"
       (mouseleave)="resetHighlight()"
       (click)="selectItem(item)"
+      [class.selected]="isItemSelected(item.id)"
+      [class.redColor]="redColor"
     >
       <mat-icon class="title-icon" mat-list-icon>{{
         label == "Pesquisar Curso" ? "menu_book" : "person"
