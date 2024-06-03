@@ -8,7 +8,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:3000/';
+  private baseUrl = 'https://courseease.onrender.com/';
 
   constructor(
     private http: HttpClient,
