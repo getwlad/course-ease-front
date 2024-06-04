@@ -53,4 +53,24 @@ header, footer {
       margin-bottom: 1rem;
     }
   }
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #825fb8;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background:  #4B227A;
+}
+
 }

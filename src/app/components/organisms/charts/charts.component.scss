@@ -1,6 +1,7 @@
 .card{
   padding: 10px;
   height: 100%;
+  margin-bottom: 20px;
 }
 .card  mat-card{
   height: 100%;
@@ -9,6 +10,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
 .graphs{
@@ -20,7 +23,6 @@
   max-width: 400px;
   width: 50%;
   margin: 5px;
-  max-height: 340px;
 
 }
 .chart {
@@ -36,4 +38,9 @@ h3 {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+@media only screen and (min-width: 1300px) {
+  .container{
+    flex-direction: row;
+  }
 }
