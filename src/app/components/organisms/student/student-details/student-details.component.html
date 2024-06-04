@@ -17,6 +17,7 @@
   <app-student-form
     [createStudent]="createStudent"
     *ngIf="isEditing || createStudent"
+    (isEditing)="updateIsEditing($event)"
     class="student-form-card"
     [student]="student"
     (isEditingEnd)="updateEndEditing($event)"

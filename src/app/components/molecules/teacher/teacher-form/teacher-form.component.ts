@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
@@ -18,11 +18,12 @@ export class TeacherFormComponent implements OnInit {
   @Input() teacher!: Teacher;
   @Input() createTeacher: boolean = false;
   @Output() isEditingEnd = new EventEmitter<Teacher>();
+  @Output() isEditing = new EventEmitter<boolean>();
   teacherForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private datePipe: DatePipe,
+    private location: Location,
   ) {
     this.teacherForm = this.fb.group({
       cpfCnpj: [{ value: '', disabled: true }, Validators.required],
@@ -49,15 +50,9 @@ export class TeacherFormComponent implements OnInit {
         specialization: this.teacher.specialization,
         experienceYears: this.teacher.experienceYears,
         active: this.teacher.active,
-        createdAt: this.datePipe.transform(
-          this.teacher.createdAt,
-          'dd/MM/yyyy',
-        ),
+        createdAt: this.teacher.createdAt,
         name: this.teacher.personData.name,
-        birthDate: this.datePipe.transform(
-          this.teacher.personData.birthDate,
-          'dd/MM/yyyy',
-        ),
+        birthDate: this.teacher.personData.birthDate,
         email: this.teacher.personData.email,
         phone: this.teacher.personData.phone,
         gender: this.teacher.personData.gender,
@@ -69,11 +64,17 @@ export class TeacherFormComponent implements OnInit {
     return this.teacherForm.get(controlName) as FormControl;
   }
 
+  cancel() {
+    if (this.createTeacher) {
+      this.location.back();
+    }
+    this.isEditing.emit(false);
+  }
   save() {
     if (this.teacherForm.valid) {
       const personData: Personal = {
         name: this.teacherForm.value.name,
-        birthDate: new Date(this.teacherForm.value.birthDate).toISOString(),
+        birthDate: this.teacherForm.value.birthDate,
         email: this.teacherForm.value.email,
         phone: this.teacherForm.value.phone,
         gender: this.teacherForm.value.gender,

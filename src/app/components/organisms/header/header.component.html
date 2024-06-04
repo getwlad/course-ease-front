@@ -4,20 +4,35 @@
     <nav>
       <ul>
         <li>
-          <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          <a routerLink="/dashboard" routerLinkActive="active"
+            ><span class="material-symbols-outlined"> dashboard </span>
+            <span class="link">Dashboard</span></a
+          >
         </li>
-        <li><a routerLink="/courses" routerLinkActive="active">Cursos</a></li>
         <li>
-          <a routerLink="/students" routerLinkActive="active">Estudantes</a>
+          <a routerLink="/courses" routerLinkActive="active"
+            ><span class="material-symbols-outlined"> library_books </span
+            ><span class="link">Cursos</span></a
+          >
         </li>
         <li>
-          <a routerLink="/teachers" routerLinkActive="active">Professores</a>
+          <a routerLink="/students" routerLinkActive="active"
+            ><span class="material-symbols-outlined"> school </span
+            ><span class="link">Estudantes</span></a
+          >
+        </li>
+        <li>
+          <a routerLink="/teachers" routerLinkActive="active"
+            ><span class="material-symbols-outlined"> person </span
+            ><span class="link">Professores</span></a
+          >
         </li>
       </ul>
     </nav>
   </aside>
 
-  <app-button color="warn" mat-button *ngIf="isLoggedIn" (click)="logout()"
-    ><span>Logout</span></app-button
+  <a *ngIf="isLoggedIn" class="logout" (click)="logout()"
+    ><span class="material-symbols-outlined"> logout </span
+    ><span class="link">Sair</span></a
   >
 </mat-toolbar>

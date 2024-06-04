@@ -17,6 +17,7 @@
   <app-teacher-form
     [createTeacher]="createTeacher"
     *ngIf="isEditing || createTeacher"
+    (isEditing)="updateIsEditing($event)"
     class="teacher-form-card"
     [teacher]="teacher"
     (isEditingEnd)="updateEndEditing($event)"

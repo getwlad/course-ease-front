@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
@@ -17,9 +18,13 @@ export class StudentFormComponent implements OnInit {
   @Input() student!: Student;
   @Input() createStudent: boolean = false;
   @Output() isEditingEnd = new EventEmitter<Student>();
+  @Output() isEditing = new EventEmitter<boolean>();
   studentForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private location: Location,
+  ) {
     this.studentForm = this.fb.group({
       cpf: [{ value: '', disabled: true }, Validators.required],
       enrollment: [{ value: '', disabled: true }],
@@ -56,7 +61,12 @@ export class StudentFormComponent implements OnInit {
   getFormControl(controlName: string): FormControl {
     return this.studentForm.get(controlName) as FormControl;
   }
-
+  cancel() {
+    if (this.createStudent) {
+      this.location.back();
+    }
+    this.isEditing.emit(false);
+  }
   save() {
     if (this.studentForm.valid) {
       const personData: Personal = {

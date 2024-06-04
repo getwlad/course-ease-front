@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Location } from '@angular/common';
 import {
   FormBuilder,
   FormControl,
@@ -17,11 +18,13 @@ export class CourseFormComponent implements OnInit {
   @Input() course!: Course;
   @Input() createCourse: boolean = false;
   @Output() isEditingEnd = new EventEmitter<Course>();
+  @Output() isEditing = new EventEmitter<boolean>();
   courseForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private datePipe: DatePipe,
+    private location: Location,
   ) {
     this.courseForm = this.fb.group({
       name: ['', Validators.required],
@@ -42,7 +45,7 @@ export class CourseFormComponent implements OnInit {
         category: this.course.category,
         description: this.course.description,
         active: this.course.active,
-        createdAt: this.datePipe.transform(this.course.createdAt, 'dd/MM/yyyy'),
+        createdAt: this.course.createdAt,
       });
     }
   }
@@ -50,7 +53,12 @@ export class CourseFormComponent implements OnInit {
   getFormControl(controlName: string): FormControl {
     return this.courseForm.get(controlName) as FormControl;
   }
-
+  cancel() {
+    if (this.createCourse) {
+      this.location.back();
+    }
+    this.isEditing.emit(false);
+  }
   save() {
     if (this.courseForm.valid) {
       let updatedCourse: Course = {

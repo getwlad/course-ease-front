@@ -21,6 +21,7 @@
   <app-course-form
     [createCourse]="createCourse"
     *ngIf="isEditing || createCourse"
+    (isEditing)="updateIsEditing($event)"
     class="course-form-card"
     [course]="course"
     (isEditingEnd)="updateEndEditing($event)"
