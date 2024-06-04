@@ -1,66 +1,22 @@
-<div *ngIf="loadingStudents && editingStudents" class="overlay">
-  <div class="spinner">Carregando...</div>
-</div>
+<app-loading
+  *ngIf="(loadingStudents && !editingStudents) || (!course && !createCourse)"
+></app-loading>
 
-<div *ngIf="!course && !createCourse" class="overlay">
-  <div class="spinner">Carregando...</div>
-</div>
-
-<section class="course-detail" *ngIf="course || createCourse">
+<section
+  class="course-detail"
+  [ngClass]="{ 'flex-row': editingStudents }"
+  *ngIf="course || createCourse"
+>
   <app-course-details-card
-    *ngIf="!createCourse && !editingStudents && !loadingStudents"
+    *ngIf="!createCourse && !editingStudents && !loadingStudents && !isEditing"
     [course]="course"
     [isEditing]="isEditing"
+    [teacherName]="teacherName"
     (isEditingChange)="updateIsEditing($event)"
     (deleteCourse)="deletecourse($event)"
     class="course-detail-card"
   >
   </app-course-details-card>
-
-  <div class="all-students" *ngIf="editingStudents || loadingStudents">
-    <mat-progress-spinner
-      *ngIf="loadingStudents && !editingStudents"
-      mode="indeterminate"
-    ></mat-progress-spinner>
-    <p *ngIf="loadingStudents && !editingStudents" class="loading-text">
-      Aguarde, carregando os dados...
-    </p>
-
-    <ng-container *ngIf="(editingStudents && students) || !loadingStudents">
-      <app-button class="add-buton" (onClick)="updateEditingStudent()"
-        ><span class="material-symbols-outlined"> add </span
-        >Confirmar</app-button
-      >
-      <app-itens-list
-        [selectedItems]="addStudentsIds"
-        [editing]="editingStudents"
-        [items]="students!"
-        label="Pesquisar Aluno"
-        class="student-list"
-      ></app-itens-list>
-    </ng-container>
-  </div>
-
-  <div *ngIf="!isEditing && !createCourse" class="course-members">
-    <app-button
-      class="add-buton"
-      (onClick)="toggleEditingStudent()"
-      [redColor]="editingStudents"
-      ><span class="material-symbols-outlined"> add </span
-      >{{ editingStudents ? "Cancelar" : "Editar" }}</app-button
-    >
-
-    <app-itens-list
-      [selectedItems]="removeStudentsIds"
-      [editing]="editingStudents"
-      [items]="course.students!"
-      [redColor]="editingStudents"
-      label="Pesquisar Aluno"
-      class="student-list"
-    ></app-itens-list>
-
-    <h3 class="teacher">Professor responsável: {{ teacherName }}</h3>
-  </div>
 
   <app-course-form
     [createCourse]="createCourse"
@@ -69,4 +25,53 @@
     [course]="course"
     (isEditingEnd)="updateEndEditing($event)"
   ></app-course-form>
+
+  <div *ngIf="!isEditing && !createCourse" class="course-members">
+    <app-itens-list
+      [selectedItems]="removeStudentsIds"
+      [editing]="editingStudents"
+      [items]="course.students!"
+      [redColor]="editingStudents"
+      label="Pesquisar Aluno"
+      class="student-list"
+    ></app-itens-list>
+    <div class="div-btn">
+      <span class="spn-aln">{{
+        editingStudents
+          ? "Selecione quem deseja remover!"
+          : "Alunos matriculados no curso."
+      }}</span>
+      <app-button
+        *ngIf="!editingStudents"
+        class="add-buton"
+        (onClick)="toggleEditingStudent()"
+      >
+        Editar</app-button
+      >
+    </div>
+  </div>
+
+  <div class="all-students" *ngIf="editingStudents || loadingStudents">
+    <app-itens-list
+      [selectedItems]="addStudentsIds"
+      [editing]="editingStudents"
+      [items]="students!"
+      label="Pesquisar Aluno"
+      class="student-list"
+    ></app-itens-list>
+    <div class="div-btn">
+      <span class="spn-aln">Selecione quem deseja adicionar!</span>
+      <div class="botoes">
+        <app-button
+          [redColor]="editingStudents"
+          class="add-buton"
+          (onClick)="toggleEditingStudent()"
+          >Cancelar</app-button
+        >
+        <app-button class="add-buton" (onClick)="updateEditingStudent()"
+          >Salvar</app-button
+        >
+      </div>
+    </div>
+  </div>
 </section>

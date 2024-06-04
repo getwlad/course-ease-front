@@ -2,36 +2,66 @@
   display: flex;
   height: 100%;
   width: 100%;
-  justify-content: space-between;
-
-.course-detail-card, .all-students{
-
-  width: 50%;
-  flex: 1;
-}
-
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+.course-detail-card,
 .course-form-card{
-    flex: 1;
-    width: 50%;
+  flex: 1;
+  min-width: 50%;
+  margin-top: 20px;
   }
 
 .course-members{
   flex: 1;
-  width: 50%;
+    min-width: 50%;
+  margin-top: 20px;
   .teacher{
     color: black;
     margin: 5px;
     padding: 5px;
   }
 }
+
+}
+.flex-row{
+  flex-direction: row;
+  @media (max-width: 768px) {
+      flex-direction: column;
+  }
+}
+
+.all-students{
+  flex: 1;
+  min-width: 50%;
+  margin-top: 20px;
+
+}
 .all-students, .course-members{
   display: flex;
   flex-direction: column;
-}
-.add-buton{
-  min-width: 120px;
-  width: 150px;
-  align-self: flex-end;
-  margin-right: 80px;
-}
+  height: 100%;
+  div{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: 10px;
+    flex-direction: column;
+    .spn-aln{
+      color: black;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .botoes{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-direction: row;
+    }
+    .add-buton {
+      min-width: 120px;
+      width: 150px;
+      margin-top: 5px;
+    }
+  }
 }

@@ -1,0 +1,21 @@
+.spinner-container {
+  position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - (64px + 40px));
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+  margin-bottom: 1rem;
+}
+
+.loading-message {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}

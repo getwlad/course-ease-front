@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InputFormComponent } from './input-form.component';
 
-describe('InputFormComponent', () => {
+describe('InputComponent', () => {
   let component: InputFormComponent;
   let fixture: ComponentFixture<InputFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InputFormComponent ]
-    })
-    .compileComponents();
+      declarations: [InputFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InputFormComponent);
     component = fixture.componentInstance;

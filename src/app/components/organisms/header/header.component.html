@@ -1,4 +1,4 @@
-<header class="header">
+<mat-toolbar color="primary" class="header">
   <span class="title">Course Ease</span>
   <aside class="sidebar">
     <nav>
@@ -16,9 +16,8 @@
       </ul>
     </nav>
   </aside>
-  <div class="login-options" *ngIf="!isLoggedIn">
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <a routerLink="/register" routerLinkActive="active">Registrar</a>
-  </div>
-  <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
-</header>
+
+  <app-button color="warn" mat-button *ngIf="isLoggedIn" (click)="logout()"
+    ><span>Logout</span></app-button
+  >
+</mat-toolbar>

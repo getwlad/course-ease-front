@@ -30,7 +30,7 @@ export class RegisterComponent {
       },
       (error) => {
         this.authService.showMsg(
-          'Erro ao fazer cadastrar: ' + error.error.error,
+          'Erro ao cadastrar: ' + error.error.message,
           true,
         );
         this.loading = false;

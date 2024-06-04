@@ -13,10 +13,10 @@ export class AuthFormComponent {
   }>();
 
   @Input() loading = false;
-
+  formSubmitted = false;
   form = new FormGroup({
-    username: new FormControl('john_doe', Validators.required),
-    password: new FormControl('Password@123', [
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.pattern(
@@ -30,6 +30,7 @@ export class AuthFormComponent {
   }
 
   submit() {
+    this.formSubmitted = true;
     if (this.form.valid) {
       this.loading = true;
       const username = this.form.value.username ?? '';

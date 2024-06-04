@@ -1,14 +1,41 @@
 
+
 .register-card {
   width: 500px;
-  background-color: var(--primary-color);
-  color: var(--text-color);
+  background-color: var(--white-color);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-section {
+.mat-card-header {
+  border-radius: 8px 8px 4px 4px;
+  background-color:var(--primary-color);
+  padding: 16px;
+  color: white;
+}
+
+.mat-card-content {
+  padding: 20px;
+}
+.links {
+  margin-top: 16px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  background-color: var(--background-color);
+}
+
+.links a {
+  color: var(--background-color);
+  text-decoration: none;
+  font-weight: bold;
+  font-style: italic;
+  span{
+    .separator {
+      color: #777; /* Cor do separador */
+    }
+  }
+}
+
+.links a:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
 }

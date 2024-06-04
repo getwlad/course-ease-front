@@ -7,48 +7,47 @@
   <mat-card-content>
     <form [formGroup]="courseForm" class="course-form">
       <div class="form-group">
-        <span class="input-label">Nome:</span>
-        <app-input
+        <app-input-form
           placeholder="Nome"
           [control]="getFormControl('name')"
-        ></app-input>
+        ></app-input-form>
       </div>
       <div class="form-group">
-        <span class="input-label">Categoria:</span>
-        <app-input
+        <app-input-form
           placeholder="Categoria"
           [control]="getFormControl('category')"
-        ></app-input>
+        ></app-input-form>
       </div>
       <div class="form-group">
-        <span class="input-label">Descrição:</span>
-        <app-input
+        <app-input-form
           placeholder="Descrição"
           [control]="getFormControl('description')"
-        ></app-input>
+        ></app-input-form>
       </div>
 
       <div class="form-group">
-        <span class="input-label">Ativo:</span>
-        <app-input
-          placeholder="Ativo"
+        <app-radio
           [control]="getFormControl('active')"
-        ></app-input>
+          [options]="[
+            { value: true, label: 'Ativo' },
+            { value: false, label: 'Desativado' }
+          ]"
+        >
+        </app-radio>
       </div>
 
       <div class="form-group" *ngIf="!this.createCourse">
-        <span class="input-label">Criado em:</span>
-        <app-input
+        <app-input-form
           placeholder="Criado em"
           [control]="getFormControl('createdAt')"
-          [disabled]="true"
-        ></app-input>
+          [date]="true"
+        ></app-input-form>
       </div>
 
       <div class="action-buttons">
-        <button mat-raised-button color="primary" (click)="save()">
+        <app-button mat-raised-button color="primary" (click)="save()">
           Salvar
-        </button>
+        </app-button>
       </div>
     </form>
   </mat-card-content>

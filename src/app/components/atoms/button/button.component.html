@@ -1,9 +1,13 @@
 <button
+  [color]="color"
   mat-raised-button
   [disabled]="disabled"
   (click)="onClick.emit()"
   class="mat-raised-button"
   [class.red-button]="redColor"
 >
-  <ng-content></ng-content>
+  <ng-content *ngIf="!loading"></ng-content>
+  <ng-container *ngIf="loading">
+    <div class="loader"></div>
+  </ng-container>
 </button>

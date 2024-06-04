@@ -1,0 +1,154 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+
+$md-blue: (
+    50 : #e1e3e8,
+    100 : #b3b9c5,
+    200 : #818a9e,
+    300 : #4e5b77,
+    400 : #28385a,
+    500 : #02153d,
+    600 : #021237,
+    700 : #010f2f,
+    800 : #010c27,
+    900 : #01061a,
+    A100 : #5866ff,
+    A200 : #2538ff,
+    A400 : #0014f1,
+    A700 : #0012d8,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$md-accent: (
+    50 : #e9e4ef,
+    100 : #c9bdd7,
+    200 : #a591bd,
+    300 : #8164a2,
+    400 : #66438e,
+    500 : #4b227a,
+    600 : #441e72,
+    700 : #3b1967,
+    800 : #33145d,
+    900 : #230c4a,
+    A100 : #ab81ff,
+    A200 : #894eff,
+    A400 : #671bff,
+    A700 : #5602ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$md-primary: (
+    50 : #e1f3f5,
+    100 : #b3e0e7,
+    200 : #80cbd7,
+    300 : #4db6c7,
+    400 : #27a7bb,
+    500 : #0197af,
+    600 : #018fa8,
+    700 : #01849f,
+    800 : #017a96,
+    900 : #006986,
+    A100 : #b3ebff,
+    A200 : #80deff,
+    A400 : #4dd1ff,
+    A700 : #33caff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-g: (
+    50 : #e0fdf9,
+    100 : #b3faf1,
+    200 : #80f7e8,
+    300 : #4df3de,
+    400 : #26f1d7,
+    500 : #00eed0,
+    600 : #00eccb,
+    700 : #00e9c4,
+    800 : #00e7be,
+    900 : #00e2b3,
+    A100 : #ffffff,
+    A200 : #d6fff5,
+    A400 : #a3ffe9,
+    A700 : #8affe3,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-theme-primary: mat.define-palette($md-primary);
+$my-theme-accent: mat.define-palette($md-accent);
+
+
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-theme-primary,
+      accent: $my-theme-accent,
+      warn: mat.$red-palette,
+    ),
+
+  )
+);
+
+
+
+@include mat.all-component-themes($theme);

@@ -1,6 +1,4 @@
-<div *ngIf="!dashboardRelatory" class="overlay">
-  <div class="spinner">Carregando...</div>
-</div>
+<app-loading *ngIf="!dashboardRelatory"> </app-loading>
 <section *ngIf="dashboardRelatory" class="dashboard">
   <app-summary-card [dashboardRelatory]="dashboardRelatory"></app-summary-card>
   <app-charts [dashboardRelatory]="dashboardRelatory"></app-charts>

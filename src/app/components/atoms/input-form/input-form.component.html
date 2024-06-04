@@ -1,9 +1,25 @@
-<mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>{{ placeholder }}</mat-label>
   <input
     matInput
     [placeholder]="placeholder"
-    [(ngModel)]="value"
-    [attr.name]="name"
-    [disabled]="disabled"
+    [formControl]="control"
+    class="mat-input-element"
+    [type]="type"
+    *ngIf="!date"
   />
+  <input
+    matInput
+    [placeholder]="placeholder"
+    [formControl]="control"
+    class="mat-input-element"
+    appParseDate
+    *ngIf="date"
+  />
+
+  <ng-container *ngFor="let error of errors">
+    <mat-error *ngIf="showErrors && control.hasError(error.type)">
+      {{ error.message }}
+    </mat-error>
+  </ng-container>
 </mat-form-field>

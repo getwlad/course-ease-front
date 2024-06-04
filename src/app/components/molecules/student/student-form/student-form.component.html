@@ -7,79 +7,75 @@
   <mat-card-content>
     <form [formGroup]="studentForm" class="student-form">
       <div class="form-group">
-        <span class="input-label">Nome:</span>
-        <app-input
+        <app-input-form
           placeholder="Nome"
           [control]="getFormControl('name')"
-        ></app-input>
+        ></app-input-form>
       </div>
       <div class="form-group">
-        <span class="input-label">CPF:</span>
-        <app-input
+        <app-input-form
           placeholder="CPF"
           [control]="getFormControl('cpf')"
-        ></app-input>
+        ></app-input-form>
       </div>
 
       <div class="form-group" *ngIf="!this.createStudent">
-        <span class="input-label">Matrícula:</span>
-        <app-input
+        <app-input-form
           placeholder="Matrícula"
           [control]="getFormControl('enrollment')"
-        ></app-input>
+        ></app-input-form>
       </div>
       <div class="form-group">
-        <span class="input-label">Data de Nascimento:</span>
-        <app-input
+        <app-input-form
+          appParseDate
           placeholder="Data de Nascimento"
           [control]="getFormControl('birthDate')"
-        ></app-input>
+          [date]="true"
+        ></app-input-form>
       </div>
 
       <div class="form-group">
-        <span class="input-label">Email:</span>
-        <app-input
+        <app-input-form
           placeholder="Email"
           [control]="getFormControl('email')"
-        ></app-input>
+        ></app-input-form>
       </div>
 
       <div class="form-group">
-        <span class="input-label">Telefone:</span>
-        <app-input
+        <app-input-form
           placeholder="Telefone"
           [control]="getFormControl('phone')"
-        ></app-input>
+        ></app-input-form>
       </div>
 
       <div class="form-group">
-        <span class="input-label">Gênero:</span>
-        <app-input
-          placeholder="Gênero"
-          [control]="getFormControl('gender')"
-        ></app-input>
-      </div>
-      <div class="form-group" *ngIf="!this.createStudent">
-        <span class="input-label">Ativo:</span>
-        <app-input
-          placeholder="Ativo"
-          [control]="getFormControl('active')"
-        ></app-input>
+        <app-select [control]="getFormControl('gender')"></app-select>
       </div>
 
       <div class="form-group" *ngIf="!this.createStudent">
-        <span class="input-label">Criado em:</span>
-        <app-input
+        <app-radio
+          [control]="getFormControl('active')"
+          [options]="[
+            { value: true, label: 'Ativo' },
+            { value: false, label: 'Desativado' }
+          ]"
+        >
+        </app-radio>
+      </div>
+
+      <div class="form-group" *ngIf="!this.createStudent">
+        <app-input-form
+          appParseDate
           placeholder="Criado em"
           [control]="getFormControl('createdAt')"
-          [disabled]="true"
-        ></app-input>
+          [date]="true"
+        ></app-input-form>
       </div>
 
       <div class="action-buttons">
-        <button mat-raised-button color="primary" (click)="save()">
+        <app-button mat-raised-button color="primary" (click)="save()">
           Salvar
-        </button>
+        </app-button>
       </div>
     </form>
   </mat-card-content>

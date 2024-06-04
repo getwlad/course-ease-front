@@ -1,17 +1,27 @@
 .teacher-detail{
   display: flex;
-  height: 100%;
   width: 100%;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 .teacher-detail-card{
-  max-height: 75vh;
-  width: 50%;
+  flex: 1;
+  min-width: 50%;
 }
-
   .teacher-form-card{
     flex: 1;
-    width: 50%;
+    min-width:  35%;
   }
+}
 
-
+.title{
+  flex: 1;
+  margin-bottom: 10px;
+  background-color: var(--white-color);
+  text-align: center;
+  h2 {
+    width: 100%;
+    font-size: 1.5rem;
+  }
 }

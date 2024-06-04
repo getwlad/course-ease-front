@@ -1,4 +1,6 @@
-@import './src/styles/variables';
+@use '@angular/material' as mat;
+@import './styles/variables.scss';
+
 *{
   margin: 0;
   padding: 0;
@@ -6,11 +8,13 @@
 }
 
 body {
-  background-color: var(--background-color);
   color: var(--text-color);
-  font-family: 'Roboto', sans-serif;
+  font-family:  Helvetica, Arial, sans-serif;
   min-height: 100vh;
   width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  background-color: var(--site-color);
 }
 
 header, footer {
@@ -25,7 +29,7 @@ header, footer {
     margin-top: 8px;
     align-self: center;
   }
-  .msg-sucess {
+  .msg-success {
     background-color: #28a745;
     color: #fff;
   }
@@ -33,21 +37,20 @@ header, footer {
     background-color: red;
     color: #fff;
   }
-  mat-progress-spinner{
-    align-self: center;
-    color: var(--primary-color);
-  }
+
   .overlay {
     position: fixed;
-    top: 56px;
+    top: 64px;
     left: 0;
     width: 100%;
-    height: calc(100% - (56px + 40px));
+    height: calc(100% - (64px + 40px));
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
+    .div  {
+      margin-bottom: 1rem;
+    }
   }
-
 }

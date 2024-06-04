@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +31,7 @@ import { ChartsComponent } from './components/organisms/charts/charts.component'
 import { DashListComponent } from './components/organisms/dash-list/dash-list.component';
 import { AuthService } from './services/authentication/auth.service';
 import { AuthInterceptor } from './services/authentication/auth.interceptor';
-import { InputComponent } from './components/atoms/input/input.component';
+import { InputFormComponent } from './components/atoms/input-form/input-form.component';
 import { AuthFormComponent } from './components/molecules/auth-form/auth-form.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginComponent } from './components/organisms/login/login.component';
@@ -45,7 +47,6 @@ import { TeacherListComponent } from './components/organisms/teacher/teacher-lis
 import { CourseDetailsPageComponent } from './pages/course/course-details-page/course-details-page.component';
 import { StudentDetailsPageComponent } from './pages/student/student-details-page/student-details-page.component';
 import { TeacherDetailsPageComponent } from './pages/teacher/teacher-details-page/teacher-details-page.component';
-import { InputFormComponent } from './components/atoms/input-form/input-form.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TeacherFormComponent } from './components/molecules/teacher/teacher-form/teacher-form.component';
 import { CourseFormComponent } from './components/molecules/course/course-form/course-form.component';
@@ -57,6 +58,12 @@ import { CourseDetailsComponent } from './components/organisms/course/course-det
 import { CourseDetailsCardComponent } from './components/molecules/course/course-details-card/course-details-card.component';
 import { TeacherDetailsCardComponent } from './components/molecules/teacher/teacher-details-card/teacher-details-card.component';
 import { DatePipe } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { SelectComponent } from './components/atoms/select/select.component';
+import { ParseDateDirective } from './directives/parse-date.directive';
+import { RadioComponent } from './components/atoms/radio/radio.component';
+import { LoadingComponent } from './components/atoms/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +83,7 @@ import { DatePipe } from '@angular/common';
     DashListComponent,
     LoginComponent,
     RegisterComponent,
-    InputComponent,
+    InputFormComponent,
     AuthFormComponent,
     LoginPageComponent,
     RegisterPageComponent,
@@ -100,6 +107,10 @@ import { DatePipe } from '@angular/common';
     CourseDetailsComponent,
     CourseDetailsCardComponent,
     TeacherDetailsCardComponent,
+    SelectComponent,
+    ParseDateDirective,
+    RadioComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,6 +128,10 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     FormsModule,
     MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatInputModule,
+    MatToolbarModule,
   ],
   providers: [
     ApiService,

@@ -8,6 +8,7 @@ import {
   LoginResponse,
   RegisteredUser,
 } from './interfaces/auth-response.interface';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -55,7 +56,13 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+
+    if (token && !this.isTokenExpired(token)) {
+      return token;
+    }
+
+    return null;
   }
 
   isAuthenticated(): boolean {
@@ -67,5 +74,16 @@ export class AuthService {
 
   onLoginStatusChange(): Observable<boolean> {
     return this.isLoggedInSubject.asObservable();
+  }
+
+  isTokenExpired(token: string): boolean {
+    if (!token) {
+      return true;
+    }
+
+    const decodedToken: { exp: number } = jwtDecode(token);
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    return decodedToken.exp < currentTime;
   }
 }

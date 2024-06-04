@@ -1,12 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit.emit()">
-  <app-input
+  <app-input-form
     label="Username"
     [control]="getFormControl('username')"
     placeholder="Username"
     [errors]="[{ type: 'required', message: 'O username é obrigatório' }]"
-  ></app-input>
+    [showErrors]="formSubmitted"
+  ></app-input-form>
 
-  <app-input
+  <app-input-form
     label="Password"
     [control]="getFormControl('password')"
     type="password"
@@ -23,12 +24,10 @@
           'A senha deve conter pelo menos 1 letra maiúscula, 1 minúscula e 1 número'
       }
     ]"
-  ></app-input>
+    [showErrors]="formSubmitted"
+  ></app-input-form>
 
-  <app-button [disabled]="loading" (onClick)="submit()">
+  <app-button [disabled]="loading" [loading]="loading" (onClick)="submit()">
     <ng-container *ngIf="!loading">Enviar</ng-container>
-    <ng-container *ngIf="loading">
-      <div class="loader"></div>
-    </ng-container>
   </app-button>
 </form>

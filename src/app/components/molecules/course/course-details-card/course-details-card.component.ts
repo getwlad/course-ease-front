@@ -8,6 +8,7 @@ import { Course } from 'src/app/models/course.model';
 })
 export class CourseDetailsCardComponent implements OnInit {
   @Input() course!: Course;
+  @Input() teacherName!: string;
   @Input() isEditing: boolean = false;
   @Output() courseChange = new EventEmitter<Course>();
   @Output() isEditingChange = new EventEmitter<boolean>();

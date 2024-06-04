@@ -1,0 +1,29 @@
+.not-found-page {
+  display: flex;
+  color: black;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--site-color);
+}
+
+.title{
+  text-align: center;
+
+  width: 500px;
+  font-size: 28px;
+  line-height: 32px;
+  padding: 10px;
+  color: black;
+  span{
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+}
+:host{
+  display: flex;
+  flex: 1;
+}

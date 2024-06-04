@@ -1,10 +1,11 @@
-<div *ngIf="!teacher && !createTeacher" class="overlay">
-  <div class="spinner">Carregando...</div>
-</div>
+<app-loading *ngIf="!teacher && !createTeacher"></app-loading>
 
 <section class="teacher-detail" *ngIf="teacher || createTeacher">
+  <mat-toolbar class="title">
+    <h2>Informações sobre o professor!</h2>
+  </mat-toolbar>
   <app-teacher-details-card
-    *ngIf="!createTeacher"
+    *ngIf="!createTeacher && !isEditing"
     [teacher]="teacher"
     [isEditing]="isEditing"
     (isEditingChange)="updateIsEditing($event)"

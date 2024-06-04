@@ -1,13 +1,9 @@
 <mat-card class="detail-card">
   <mat-card-header>
-    <mat-card-title class="title">Detalhes do Estudante</mat-card-title>
+    <mat-card-title class="title">{{ student.personData.name }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <mat-list class="list">
-      <mat-list-item class="list-item">
-        <span mat-line>Nome:</span>
-        <span mat-line>{{ student.personData.name }}</span>
-      </mat-list-item>
       <mat-list-item class="list-item">
         <span mat-line>CPF:</span>
         <span mat-line>{{ student.cpf }}</span>
