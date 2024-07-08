@@ -12,7 +12,7 @@
 
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20MELHORIA%20CONTÍNUA&color=GREEN&style=for-the-badge)<br>
 A app faz parte do sistema Course Easse para gestão de cursos. <br>
-App em produção: [CourseEaseAPP](https://courseease.vercel.app/)
+App em produção: [CourseEaseAPP](https://courseease.vercel.app/) <br>
 Link API: [CourseEaseAPI](https://github.com/getwlad/course-ease-back) 
 
 ## :hammer: Funcionalidades
